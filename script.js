@@ -12,10 +12,6 @@ event$.subscribe( _ => {
   const arrayQuote = quoteDisplayElement.querySelectorAll('span');
   const arrayValue = quoteInputElement.value.split('');
 
-// quoteInputElement.addEventListener('input', () => {
-//   const arrayQuote = quoteDisplayElement.querySelectorAll('span')
-//   const arrayValue = quoteInputElement.value.split('')
-
   let correct = true
   arrayQuote.forEach((characterSpan, index) => {
     const character = arrayValue[index]
@@ -40,12 +36,6 @@ function getRandomQuote() {
   return from(fetch(RANDOM_QUOTE_API_URL))
     .pipe(flatMap(response => from(response.json())))}
 
-// function getRandomQuote() {
-//   return fetch(RANDOM_QUOTE_API_URL)
-//     .then(response => response.json())
-//     .then(data => data.content)
-// }
-
 function renderNewQuote() {
   getRandomQuote().subscribe( (data) => {
     quoteDisplayElement.innerHTML = ''
@@ -60,19 +50,7 @@ function renderNewQuote() {
   startTimer()
 })
 }
-// async function renderNewQuote() {
-//   const quote = await getRandomQuote()
-//   quoteDisplayElement.innerHTML = ''
-//   quote.split('').forEach(character => {
-//     const characterSpan = document.createElement('span')
-//     characterSpan.innerText = character
-//     quoteDisplayElement.appendChild(characterSpan)
-//   })
-//   quoteInputElement.value = null
-//   startTimer()
-// }
 
-let startTime
 function startTimer() {
   const timer$ = interval(1000)
   timerElement.innerText = 0
